@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHNOVENTADOUR 2.0 | Le Lab d'Innovation</title>
+    <!-- Tailwind CSS pour un design ultra-rapide et moderne -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icônes FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            dark: '#0F172A',
+                            darker: '#0B0F19',
+                            cyan: '#06B6D4',
+                            emerald: '#10B981',
+                            purple: '#8B5CF6',
+                            slate: '#1E293B',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Grille cybernétique en arrière-plan */
+        .cyber-grid {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        /* Effets de lueurs néon */
+        .neon-shadow-cyan {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+        }
+        .neon-shadow-emerald {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-cyber-darker text-slate-300 font-sans antialiased selection:bg-cyber-cyan selection:text-cyber-darker">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-cyber-dark/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-cyber-cyan to-cyber-emerald flex items-center justify-center text-cyber-darker text-xl font-extrabold font-poppins shadow-lg">
+                    TV
+                </div>
+                <span class="font-poppins font-extrabold text-xl tracking-wider text-white">TECHNO<span class="text-cyber-cyan">VENTADOUR</span></span>
+            </a>
+            
+            <!-- Liens de navigation bureau -->
+            <div class="hidden md:flex items-center gap-8 font-poppins font-medium text-sm">
+                <a href="#accueil" class="hover:text-cyber-cyan transition-colors duration-200">Accueil</a>
+                <a href="#missions" class="hover:text-cyber-cyan transition-colors duration-200">Les Niveaux</a>
+                <a href="#lab-virtuel" class="hover:text-cyber-cyan transition-colors duration-200">Lab Interactif</a>
+                <a href="#stats" class="hover:text-cyber-cyan transition-colors duration-200">Statistiques</a>
+                <a href="#outils" class="hover:text-cyber-cyan transition-colors duration-200">Nos Outils</a>
+            </div>
+
+            <!-- Bouton d'action Gaming -->
+            <div class="hidden md:block">
+                <a href="#lab-virtuel" class="px-5 py-2.5 rounded-lg border border-cyber-cyan text-cyber-cyan font-poppins font-semibold text-sm hover:bg-cyber-cyan hover:text-cyber-darker hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300">
+                    <i class="fa-solid fa-gamepad mr-2"></i>Lancer un défi
+                </a>
+            </div>
+            
+            <!-- Menu mobile -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white text-2xl focus:outline-none">
+                <i id="menu-icon" class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-cyber-dark border-b border-white/10 p-6 flex flex-col gap-4 font-poppins font-medium">
+            <a href="#accueil" onclick="toggleMobileMenu()" class="text-white hover:text-cyber-cyan py-2 border-b border-white/5">Accueil</a>
+            <a href="#missions" onclick="toggleMobileMenu()" class="text-white hover:text-cyber-cyan py-2 border-b border-white/5">Les Niveaux</a>
+            <a href="#lab-virtuel" onclick="toggleMobileMenu()" class="text-white hover:text-cyber-cyan py-2 border-b border-white/5">Lab Interactif</a>
+            <a href="#stats" onclick="toggleMobileMenu()" class="text-white hover:text-cyber-cyan py-2 border-b border-white/5">Statistiques</a>
+            <a href="#outils" onclick="toggleMobileMenu()" class="text-white hover:text-cyber-cyan py-2 border-b border-white/5">Nos Outils</a>
+            <a href="#lab-virtuel" onclick="toggleMobileMenu()" class="w-full text-center px-4 py-3 rounded-lg bg-cyber-cyan text-cyber-darker font-bold block mt-2">Lancer un défi</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="accueil" class="min-h-screen relative flex items-center justify-center pt-24 px-6 md:px-12 overflow-hidden cyber-grid bg-cyber-dark">
+        <!-- Dégradés lumineux en arrière-plan -->
+        <div class="absolute top-1/4 right-0 w-[500px] h-[500px] bg-cyber-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 left-10 w-[500px] h-[500px] bg-cyber-emerald/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 py-12">
+            <!-- Texte d'introduction -->
+            <div class="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 self-center lg:self-start bg-cyber-slate/60 border border-cyber-cyan/30 rounded-full py-1.5 px-4 text-xs font-semibold tracking-wider text-cyber-cyan font-poppins uppercase">
+                    <span class="flex h-2 w-2 rounded-full bg-cyber-emerald animate-pulse"></span>
+                    TechnoVentadour 2.0 est En Ligne
+                </div>
+                
+                <h1 class="font-poppins font-extrabold text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight">
+                    Moins de théorie,<br class="hidden sm:inline">
+                    <span class="bg-gradient-to-r from-cyber-cyan to-cyber-emerald bg-clip-text text-transparent text-glow-cyan">plus de robots !</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
+                    Entre dans l'univers de la création technologique. Ici, au collège Ventadour, on imagine des objets en 3D, on automatise des systèmes intelligents et on programme des robots pour relever des défis futuristes.
+                </p>
+
+                <!-- Boutons d'appel à l'action -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start font-poppins font-semibold mt-4">
+                    <a href="#missions" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-emerald text-cyber-darker text-center shadow-lg hover:shadow-cyan-500/20 transform hover:-translate-y-0.5 transition-all duration-200">
+                        <i class="fa-solid fa-compass mr-2"></i>Commencer une quête
+                    </a>
+                    <a href="#lab-virtuel" class="px-8 py-4 rounded-xl bg-cyber-slate hover:bg-slate-800 border border-white/5 text-white text-center hover:border-white/10 transition-all duration-200">
+                        <i class="fa-solid fa-circle-play mr-2"></i>Essayer un défi de code
+                    </a>
+                </div>
+            </div>
+
+            <!-- Partie visuelle droite / Dashboard Simulation -->
+            <div class="lg:col-span-5 relative">
+                <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyber-cyan to-cyber-emerald opacity-30 blur-lg"></div>
+                <div class="relative bg-cyber-dark border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                    <!-- En-tête de fenêtre de style console / code -->
+                    <div class="flex justify-between items-center px-4 py-3 bg-cyber-slate/50 border-b border-white/5">
+                        <div class="flex gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-500">terminal@lab-ventadour:~$</span>
+                        <i class="fa-solid fa-microchip text-cyber-cyan text-sm"></i>
+                    </div>
+                    <!-- Zone d'illustration dynamique -->
+                    <div class="p-6 font-mono text-sm text-left flex flex-col gap-4">
+                        <div class="text-cyan-400"><span class="text-slate-500">&gt;</span> initialiser_mbot_v2.sh</div>
+                        <div class="text-slate-400">Recherche de la carte mère... <span class="text-cyber-emerald">[OK]</span></div>
+                        <div class="text-slate-400">Capteur ultrason connecté (Broche 5)...</div>
+                        
+                        <!-- Visualisation schématique simplifiée -->
+                        <div class="my-3 p-4 rounded-lg bg-cyber-darker border border-white/5 flex flex-col items-center gap-4">
+                            <div class="flex items-center gap-6">
+                                <i class="fa-solid fa-robot text-5xl text-cyber-cyan animate-bounce"></i>
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-500">STATUT CAPTEURS</span>
+                                    <span class="text-sm font-bold text-white">mBot prêt à rouler</span>
+                                    <span class="text-xs text-cyber-emerald">Obstacle : 45cm</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-cyber-slate rounded-full h-1.5 overflow-hidden">
+                                <div class="bg-gradient-to-r from-cyber-cyan to-cyber-emerald h-full rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+
+                        <div class="text-slate-400"><span class="text-slate-500">&gt;</span> lancer_programme_suivi_ligne</div>
+                        <div class="text-cyber-emerald flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check"></i> Code optimisé compilé avec succès.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSIONS / SECTION NIVEAUX -->
+    <section id="missions" class="py-24 px-6 md:px-12 bg-cyber-darker relative">
+        <div class="max-w-7xl mx-auto">
+            <!-- En-tête de section -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-poppins font-extrabold text-3xl md:text-5xl text-white mb-4">
+                    Choisis ta <span class="bg-gradient-to-r from-cyber-cyan to-cyber-emerald bg-clip-text text-transparent">Quête Scolaire</span>
+                </h2>
+                <div class="w-20 h-1 bg-cyber-cyan mx-auto mb-6"></div>
+                <p class="text-slate-400">Chaque niveau au collège correspond à une branche d'expérimentation technologique. Découvre tes missions de l'année.</p>
+            </div>
+
+            <!-- Sélecteur d'onglets de niveaux -->
+            <div class="flex justify-center gap-4 mb-12 font-poppins font-bold">
+                <button onclick="switchLevel('5eme')" id="btn-5eme" class="level-tab-btn active px-6 py-3 rounded-xl border border-cyber-cyan bg-cyber-cyan text-cyber-darker transition-all duration-300">
+                    5ème : Les Bases
+                </button>
+                <button onclick="switchLevel('4eme')" id="btn-4eme" class="level-tab-btn px-6 py-3 rounded-xl border border-white/5 bg-cyber-slate text-slate-400 hover:text-white hover:border-white/10 transition-all duration-300">
+                    4ème : Domotique
+                </button>
+                <button onclick="switchLevel('3eme')" id="btn-3eme" class="level-tab-btn px-6 py-3 rounded-xl border border-white/5 bg-cyber-slate text-slate-400 hover:text-white hover:border-white/10 transition-all duration-300">
+                    3ème : Robotique & IA
+                </button>
+            </div>
+
+            <!-- Contenus des niveaux (interactifs via JS) -->
+            <div class="relative min-h-[450px]">
+                
+                <!-- NIVEAU 5ème -->
+                <div id="panel-5eme" class="level-panel block transition-all duration-300">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="flex flex-col gap-6">
+                            <h3 class="text-3xl font-poppins font-bold text-white"><span class="text-cyber-cyan">Niveau 1 :</span> Fondations, Modélisation & Internet</h3>
+                            <p class="text-slate-400 text-lg leading-relaxed">
+                                En classe de cinquième, nous posons les briques élémentaires de la culture technologique. C'est l'année de la créativité numérique et de la découverte de l'internet responsable.
+                            </p>
+                            <!-- Liste d'activités -->
+                            <div class="flex flex-col gap-3">
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-cyan/10 text-cyber-cyan"><i class="fa-solid fa-cube text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Modélisation de Bungalow 3D</h4>
+                                        <p class="text-slate-500 text-sm">Crée ton premier projet d'architecture et manipule-le en 3D à l'écran.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-cyan/10 text-cyber-cyan"><i class="fa-solid fa-shield-halved text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Cybersécurité & Internet de base</h4>
+                                        <p class="text-slate-500 text-sm">Comprends le fonctionnement des réseaux et comment te protéger sur le web.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-cyan/10 text-cyber-cyan"><i class="fa-solid fa-wifi text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Introduction aux Objets Connectés (IoT)</h4>
+                                        <p class="text-slate-500 text-sm">Découvre comment les données voyagent d'un appareil à l'autre.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 flex items-center justify-center">
+                            <!-- Image Bungalow 3D Mockup -->
+                            <div class="w-full h-80 rounded-xl overflow-hidden relative group">
+                                <img src="https://houseplanng.com/wp-content/uploads/2025/08/3d-house-2.png" alt="3D Bungalow Architecture Model" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-cyber-dark via-transparent to-transparent opacity-90"></div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <span class="px-2 py-1 rounded bg-cyber-cyan text-cyber-darker text-xs font-bold uppercase font-poppins">Projet Clé</span>
+                                    <h4 class="text-white font-bold text-xl mt-2">Bungalow Modulaire</h4>
+                                    <p class="text-slate-400 text-xs mt-1">Modélisation et rendu thermique simulé.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NIVEAU 4ème -->
+                <div id="panel-4eme" class="level-panel hidden transition-all duration-300">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="flex flex-col gap-6">
+                            <h3 class="text-3xl font-poppins font-bold text-white"><span class="text-cyber-emerald">Niveau 2 :</span> Domotique & Programmation Active</h3>
+                            <p class="text-slate-400 text-lg leading-relaxed">
+                                En quatrième, nous donnons vie aux objets ! Tu vas programmer tes premières cartes électroniques Arduino, comprendre l'automatisation d'une maison et concevoir des applications mobiles.
+                            </p>
+                            <!-- Liste d'activités -->
+                            <div class="flex flex-col gap-3">
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-emerald/10 text-cyber-emerald"><i class="fa-solid fa-microchip text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Logigrammes & Circuits Arduino</h4>
+                                        <p class="text-slate-500 text-sm">Apprends à connecter des capteurs physiques à un processeur de contrôle.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-emerald/10 text-cyber-emerald"><i class="fa-solid fa-house-laptop text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Maison Connectée (Domotique)</h4>
+                                        <p class="text-slate-500 text-sm">Code un système de contrôle de température et d'alarme de sécurité.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-emerald/10 text-cyber-emerald"><i class="fa-solid fa-mobile-screen-button text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Développement d'Apps Mobiles</h4>
+                                        <p class="text-slate-500 text-sm">Conçois et programme une interface mobile pour piloter des équipements à distance.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 flex items-center justify-center">
+                            <!-- Image Arduino Simulatrice -->
+                            <div class="w-full h-80 rounded-xl overflow-hidden relative group bg-cyber-dark border border-white/5 flex items-center justify-center p-4">
+                                <img src="https://makeabilitylab.github.io/physcomp/arduino/assets/movies/Arduino_LEDOn_5VFixed_USBPower.gif" alt="Arduino circuit diagram wiring" class="max-h-full object-contain">
+                                <div class="absolute inset-0 bg-gradient-to-t from-cyber-dark via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                                <div class="absolute bottom-6 left-6 right-6 pointer-events-none">
+                                    <span class="px-2 py-1 rounded bg-cyber-emerald text-white text-xs font-bold uppercase font-poppins">Projet Clé</span>
+                                    <h4 class="text-white font-bold text-xl mt-2">Câblage &amp; Logique Arduino</h4>
+                                    <p class="text-slate-400 text-xs mt-1">Apprentissage pas à pas de la gestion d'énergie.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NIVEAU 3ème -->
+                <div id="panel-3eme" class="level-panel hidden transition-all duration-300">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="flex flex-col gap-6">
+                            <h3 class="text-3xl font-poppins font-bold text-white"><span class="text-cyber-purple">Niveau 3 :</span> Robotique, IA & Design CAO</h3>
+                            <p class="text-slate-400 text-lg leading-relaxed">
+                                L'année ultime de la technologie au collège ! Prépare-toi à relever le fameux défi mBot, à modéliser des objets physiques en 3D avancée pour les imprimer en plastique, et à t'initier à l'Intelligence Artificielle.
+                            </p>
+                            <!-- Liste d'activités -->
+                            <div class="flex flex-col gap-3">
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-purple/10 text-cyber-purple"><i class="fa-solid fa-robot text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Le Défi mBot d'Équipe</h4>
+                                        <p class="text-slate-500 text-sm">Améliore et programme un robot capable de s'orienter sur un circuit noir au sol.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-purple/10 text-cyber-purple"><i class="fa-solid fa-shapes text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Conception CAO 3D</h4>
+                                        <p class="text-slate-500 text-sm">Calcule, dessine et modélise des supports mécaniques prêts pour l'impression 3D.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3 items-start">
+                                    <div class="h-6 w-6 mt-1 flex items-center justify-center rounded-full bg-cyber-purple/10 text-cyber-purple"><i class="fa-solid fa-brain text-sm"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Atelier Intelligence Artificielle</h4>
+                                        <p class="text-slate-500 text-sm">Entraîne un modèle visuel de Vittascience pour trier des objets intelligemment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 flex items-center justify-center">
+                            <!-- Image Robot mBot -->
+                            <div class="w-full h-80 rounded-xl overflow-hidden relative group">
+                                <img src="https://i.ytimg.com/vi/bhkjOldya5E/maxresdefault.jpg" alt="mBot Robot Programming" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-cyber-dark via-transparent to-transparent opacity-90"></div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <span class="px-2 py-1 rounded bg-cyber-purple text-white text-xs font-bold uppercase font-poppins">Projet Clé</span>
+                                    <h4 class="text-white font-bold text-xl mt-2">Défis Robotique mBot</h4>
+                                    <p class="text-slate-400 text-xs mt-1">Coopération, stratégie et programmation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SECTION: CODE PLAYGROUND -->
+    <section id="lab-virtuel" class="py-24 px-6 md:px-12 bg-cyber-dark relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyber-cyan/5 rounded-full blur-[140px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyber-cyan font-bold font-poppins text-sm tracking-widest uppercase">Défi Interactif Web</span>
+                <h2 class="font-poppins font-extrabold text-3xl md:text-5xl text-white mt-2 mb-4">
+                    Le Labo <span class="bg-gradient-to-r from-cyber-cyan to-cyber-emerald bg-clip-text text-transparent">Virtuel</span>
+                </h2>
+                <div class="w-20 h-1 bg-cyber-emerald mx-auto mb-6"></div>
+                <p class="text-slate-400">Pourras-tu allumer la LED témoin ? Glisse et ordonne correctement les blocs de programmation ci-dessous pour compiler le programme.</p>
+            </div>
+
+            <!-- Mini Puzzle Scratch / Arduino interactif -->
+            <div class="max-w-4xl mx-auto bg-cyber-slate/40 border border-white/10 rounded-2xl p-6 md:p-8 neon-shadow-cyan">
+                <div class="flex flex-col md:flex-row gap-8">
+                    
+                    <!-- Colonne blocs disponibles -->
+                    <div class="flex-1">
+                        <h4 class="font-poppins font-bold text-white mb-4"><i class="fa-solid fa-puzzle-piece text-cyber-cyan mr-2"></i>1. Blocs disponibles</h4>
+                        <div id="blocks-pool" class="flex flex-col gap-3 min-h-[220px] p-4 rounded-xl bg-cyber-darker border border-white/5">
+                            
+                            <div id="block-repeat" draggable="true" ondragstart="drag(event)" class="code-block cursor-grab p-3 rounded-lg bg-yellow-500 text-cyber-darker font-mono text-xs font-bold flex justify-between items-center" data-step="repeat">
+                                <span><i class="fa-solid fa-arrows-spin mr-2"></i>RÉPÉTER INDÉFINIMENT :</span>
+                                <i class="fa-solid fa-grip-vertical text-cyber-darker/60"></i>
+                            </div>
+
+                            <div id="block-high" draggable="true" ondragstart="drag(event)" class="code-block cursor-grab p-3 rounded-lg bg-blue-500 text-white font-mono text-xs font-bold flex justify-between items-center" data-step="high">
+                                <span><i class="fa-solid fa-bolt mr-2"></i>METTRE LA LED (BROCHE 13) SUR HIGH</span>
+                                <i class="fa-solid fa-grip-vertical text-white/60"></i>
+                            </div>
+
+                            <div id="block-wait" draggable="true" ondragstart="drag(event)" class="code-block cursor-grab p-3 rounded-lg bg-orange-500 text-white font-mono text-xs font-bold flex justify-between items-center" data-step="wait">
+                                <span><i class="fa-solid fa-hourglass-half mr-2"></i>ATTENDRE 1 SECONDE</span>
+                                <i class="fa-solid fa-grip-vertical text-white/60"></i>
+                            </div>
+
+                            <div id="block-low" draggable="true" ondragstart="drag(event)" class="code-block cursor-grab p-3 rounded-lg bg-blue-500 text-white font-mono text-xs font-bold flex justify-between items-center" data-step="low">
+                                <span><i class="fa-solid fa-bolt mr-2"></i>METTRE LA LED (BROCHE 13) SUR LOW</span>
+                                <i class="fa-solid fa-grip-vertical text-white/60"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone de dépôt / Organiseur -->
+                    <div class="flex-1">
+                        <h4 class="font-poppins font-bold text-white mb-4"><i class="fa-solid fa-terminal text-cyber-emerald mr-2"></i>2. Programme final</h4>
+                        <div id="drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)" class="flex flex-col gap-3 min-h-[220px] p-4 rounded-xl bg-cyber-darker/80 border-2 border-dashed border-white/10 flex justify-center items-center">
+                            <span id="drop-placeholder" class="text-slate-500 text-sm font-poppins text-center p-4">Glisse les blocs ici dans l'ordre de la boucle pour faire clignoter la LED</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bouton de validation et indicateur visuel de LED -->
+                <div class="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center gap-4">
+                        <!-- LED Physique Mockup -->
+                        <div id="led-indicator" class="h-10 w-10 rounded-full bg-slate-800 border-4 border-slate-700 transition-all duration-300"></div>
+                        <div class="flex flex-col">
+                            <span class="text-xs text-slate-500 font-poppins">STATUT SYSTÈME</span>
+                            <span id="system-status-text" class="text-sm font-bold text-slate-400">En attente de code...</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="resetPuzzle()" class="px-5 py-2.5 rounded-lg border border-white/5 text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200">
+                            Réinitialiser
+                        </button>
+                        <button onclick="compileCode()" class="px-6 py-2.5 rounded-lg bg-cyber-emerald text-cyber-darker font-poppins font-bold shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
+                            Compiler le programme
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS INTERACTIFS DE GAMIFICATION -->
+    <section id="stats" class="py-24 px-6 md:px-12 bg-cyber-darker relative">
+        <div class="max-w-7xl mx-auto">
+            <!-- Grille de stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <div class="bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 text-center hover:border-cyber-cyan/30 transition-colors duration-300">
+                    <div class="text-5xl font-poppins font-black text-cyber-cyan mb-2" data-target="100">0%</div>
+                    <div class="text-white font-poppins font-bold text-sm">Engagement Élève</div>
+                    <p class="text-slate-500 text-xs mt-2">Apprentissage pratique et projets en équipes actives.</p>
+                </div>
+
+                <div class="bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 text-center hover:border-cyber-emerald/30 transition-colors duration-300">
+                    <div class="text-5xl font-poppins font-black text-cyber-emerald mb-2" data-target="1250">0</div>
+                    <div class="text-white font-poppins font-bold text-sm">Lignes de Code</div>
+                    <p class="text-slate-500 text-xs mt-2">Compilées cette semaine par nos makers d'élite.</p>
+                </div>
+
+                <div class="bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 text-center hover:border-cyber-cyan/30 transition-colors duration-300">
+                    <div class="text-5xl font-poppins font-black text-cyber-cyan mb-2" data-target="32">0</div>
+                    <div class="text-white font-poppins font-bold text-sm">mBots Programmés</div>
+                    <p class="text-slate-500 text-xs mt-2">Prêts pour le grand défi annuel de vitesse.</p>
+                </div>
+
+                <div class="bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 text-center hover:border-cyber-purple/30 transition-colors duration-300">
+                    <div class="text-5xl font-poppins font-black text-cyber-purple mb-2" data-target="15">0</div>
+                    <div class="text-white font-poppins font-bold text-sm">Imprimantes 3D Actives</div>
+                    <p class="text-slate-500 text-xs mt-2">Fabrication de pièces originales dessinées par les élèves.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LES OUTILS RECOMMANDÉS -->
+    <section id="outils" class="py-24 px-6 md:px-12 bg-cyber-dark relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyber-cyan font-bold font-poppins text-sm tracking-widest uppercase">Écosystème Logiciel</span>
+                <h2 class="font-poppins font-extrabold text-3xl md:text-5xl text-white mt-2 mb-4">
+                    Les Applications du <span class="bg-gradient-to-r from-cyber-cyan to-cyber-emerald bg-clip-text text-transparent">Maker</span>
+                </h2>
+                <div class="w-20 h-1 bg-cyber-cyan mx-auto mb-6"></div>
+                <p class="text-slate-400">Pour relever les quêtes, voici les outils intégrés ou logiciels du laboratoire de technologie.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Outil 1 -->
+                <div class="bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="h-12 w-12 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-cat"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-xl text-white mb-2">Scratch / Vittascience</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            L'algorithme par blocs simple pour débuter. On code des scénarios animés et on configure les puces électroniques Arduino par glisser-déposer interactif.
+                        </p>
+                    </div>
+                    <span class="text-xs text-orange-500 font-bold uppercase tracking-wider font-poppins">Quêtes : 5ème &amp; 4ème</span>
+                </div>
+
+                <!-- Outil 2 -->
+                <div class="bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="h-12 w-12 rounded-xl bg-cyber-cyan/10 text-cyber-cyan flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-xl text-white mb-2">Onshape / SolidWorks</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Dessine, assemble et teste virtuellement la résistance des pièces en 3D. Idéal pour faire fonctionner un système articulé ou modéliser un bâtiment entier.
+                        </p>
+                    </div>
+                    <span class="text-xs text-cyber-cyan font-bold uppercase tracking-wider font-poppins">Quêtes : 5ème &amp; 3ème</span>
+                </div>
+
+                <!-- Outil 3 -->
+                <div class="bg-cyber-slate/30 border border-white/5 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="h-12 w-12 rounded-xl bg-cyber-emerald/10 text-cyber-emerald flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-xl text-white mb-2">mBlock 5 (Arduino)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Le pont direct entre le code et le robot physique. Permet d'injecter des boucles complexes pour optimiser le temps de réaction des capteurs infrarouges de nos mBots.
+                        </p>
+                    </div>
+                    <span class="text-xs text-cyber-emerald font-bold uppercase tracking-wider font-poppins">Quêtes : 4ème &amp; 3ème</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION APPEL À L'ACTION / FOOTER -->
+    <section class="py-20 px-6 md:px-12 bg-cyber-darker border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h3 class="font-poppins font-extrabold text-2xl md:text-3xl text-white mb-2">Prêt à hacker l'année scolaire ?</h3>
+                <p class="text-slate-400">Rejoins l'équipe TechnoVentadour au labo d'expérimentation.</p>
+            </div>
+            <a href="#accueil" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-emerald text-cyber-darker font-poppins font-bold shadow-lg hover:shadow-cyan-500/20 transform hover:-translate-y-0.5 transition-all duration-200">
+                <i class="fa-solid fa-rocket mr-2"></i>Remonter en haut
+            </a>
+        </div>
+        
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
+            <div class="flex items-center gap-3">
+                <span class="font-poppins font-bold text-white tracking-wider">TECHNO<span class="text-cyber-cyan">VENTADOUR</span></span>
+                <span>|</span>
+                <span>© 2026 Tous droits réservés</span>
+            </div>
+            <div class="flex gap-6">
+                <span class="hover:text-white transition-colors duration-200"><i class="fa-solid fa-laptop-code mr-1.5 text-cyber-cyan"></i>Laboratoire de Technologie</span>
+                <span class="hover:text-white transition-colors duration-200"><i class="fa-solid fa-school mr-1.5 text-cyber-emerald"></i>Collège Ventadour</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGIQUE JAVASCRIPT ET INTERACTION -->
+    <script>
+        // Gestion de l'affichage du menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars';
+            } else {
+                icon.className = 'fa-solid fa-xmark';
+            }
+        }
+
+        // Gestion de la sélection des niveaux d'apprentissage (Missions)
+        function switchLevel(levelId) {
+            // Cacher tous les panels
+            document.querySelectorAll('.level-panel').forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('block');
+            });
+            // Afficher le bon panel
+            const activePanel = document.getElementById(`panel-${levelId}`);
+            activePanel.classList.remove('hidden');
+            activePanel.classList.add('block');
+
+            // Mettre à jour l'état des boutons d'onglet
+            document.querySelectorAll('.level-tab-btn').forEach(btn => {
+                btn.className = "level-tab-btn px-6 py-3 rounded-xl border border-white/5 bg-cyber-slate text-slate-400 hover:text-white hover:border-white/10 transition-all duration-300";
+            });
+            const activeBtn = document.getElementById(`btn-${levelId}`);
+            
+            // Appliquer le style de focus néon dépendant du niveau
+            if (levelId === '5eme') {
+                activeBtn.className = "level-tab-btn active px-6 py-3 rounded-xl border border-cyber-cyan bg-cyber-cyan text-cyber-darker transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.3)]";
+            } else if (levelId === '4eme') {
+                activeBtn.className = "level-tab-btn active px-6 py-3 rounded-xl border border-cyber-emerald bg-cyber-emerald text-cyber-darker transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.3)]";
+            } else if (levelId === '3eme') {
+                activeBtn.className = "level-tab-btn active px-6 py-3 rounded-xl border border-cyber-purple bg-cyber-purple text-white transition-all duration-300 shadow-[0_0_15px_rgba(139,92,246,0.3)]";
+            }
+        }
+
+        // LOGIQUE DU MINI JEU INTERACTIF (GLISSER-DÉPOSER)
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const draggedElement = document.getElementById(data);
+            const dropZone = document.getElementById('drop-zone');
+            const placeholder = document.getElementById('drop-placeholder');
+
+            // Cacher l'indicateur d'aide si on pose un bloc
+            if (placeholder) {
+                placeholder.classList.add('hidden');
+            }
+
+            // Ajouter le bloc déposé à la zone du programme final
+            dropZone.appendChild(draggedElement);
+            draggedElement.setAttribute("draggable", "false"); // Empêcher un re-drag involontaire
+            draggedElement.classList.replace('cursor-grab', 'cursor-default');
+        }
+
+        function resetPuzzle() {
+            const blocksPool = document.getElementById('blocks-pool');
+            const dropZone = document.getElementById('drop-zone');
+            const placeholder = document.getElementById('drop-placeholder');
+            const led = document.getElementById('led-indicator');
+            const statusText = document.getElementById('system-status-text');
+
+            // Réinitialiser la LED physique simulée
+            led.className = "h-10 w-10 rounded-full bg-slate-800 border-4 border-slate-700 transition-all duration-300";
+            statusText.innerText = "En attente de code...";
+            statusText.className = "text-sm font-bold text-slate-400";
+
+            // Vider la zone de dépôt et réinstaller les blocs
+            const blocks = dropZone.querySelectorAll('.code-block');
+            blocks.forEach(block => {
+                block.setAttribute("draggable", "true");
+                block.classList.replace('cursor-default', 'cursor-grab');
+                blocksPool.appendChild(block);
+            });
+
+            if (placeholder) {
+                placeholder.classList.remove('hidden');
+            }
+        }
+
+        function compileCode() {
+            const dropZone = document.getElementById('drop-zone');
+            const led = document.getElementById('led-indicator');
+            const statusText = document.getElementById('system-status-text');
+            const blocks = Array.from(dropZone.querySelectorAll('.code-block'));
+
+            if (blocks.length === 0) {
+                statusText.innerText = "Glisse d'abord les blocs !";
+                statusText.className = "text-sm font-bold text-red-500";
+                return;
+            }
+
+            // Lire l'ordre des blocs (idéalement pour faire clignoter : repeat -> high -> wait -> low)
+            const codeSteps = blocks.map(b => b.getAttribute('data-step'));
+            
+            if (codeSteps[0] === 'repeat' && codeSteps[1] === 'high' && codeSteps[2] === 'wait' && codeSteps[3] === 'low') {
+                // Succès : La boucle de clignotement est logique
+                statusText.innerText = "Succès ! LED activée.";
+                statusText.className = "text-sm font-bold text-cyber-emerald text-glow-cyan";
+                
+                // Simulation d'une LED verte clignotante en boucle
+                led.className = "h-10 w-10 rounded-full bg-cyber-emerald border-4 border-emerald-400 animate-pulse shadow-[0_0_20px_rgba(16,185,129,0.8)]";
+            } else {
+                // Erreur de logique
+                statusText.innerText = "Bug détecté dans l'algorithme.";
+                statusText.className = "text-sm font-bold text-red-500";
+                led.className = "h-10 w-10 rounded-full bg-red-600 border-4 border-red-400 shadow-[0_0_20px_rgba(220,38,38,0.8)]";
+            }
+        }
+
+        // LOGIQUE D'ANIMATION DES COMPTEURS DE STATISTIQUES AU DÉFILEMENT
+        const statsSection = document.getElementById('stats');
+        let animated = false;
+
+        function startStatsAnimation() {
+            const counters = document.querySelectorAll('#stats div[data-target]');
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText.replace('%', '');
+                    const speed = target / 100;
+
+                    if (count < target) {
+                        const nextValue = Math.ceil(count + speed);
+                        if (counter.getAttribute('data-target') === "100") {
+                            counter.innerText = (nextValue > target ? target : nextValue) + "%";
+                        } else {
+                            counter.innerText = nextValue > target ? target : nextValue;
+                        }
+                        setTimeout(updateCount, 15);
+                    } else {
+                        if (counter.getAttribute('data-target') === "100") {
+                            counter.innerText = target + "%";
+                        } else {
+                            counter.innerText = target;
+                        }
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Écouter le défilement pour déclencher l'animation au bon moment
+        window.addEventListener('scroll', () => {
+            if (!statsSection) return;
+            const sectionPos = statsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 1.1;
+
+            if (sectionPos < screenPos && !animated) {
+                startStatsAnimation();
+                animated = true;
+            }
+        });
+    </script>
+</body>
+</html>
